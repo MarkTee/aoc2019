@@ -48,5 +48,12 @@ def main():
             if run_program(test_program)[0] == 19690720:
                 print(100 * noun + verb)
 
+def test():
+    assert run_program([1,0,0,0,99]) == [2,0,0,0,99]
+    assert run_program([2,3,0,3,99]) == [2,3,0,6,99]
+    assert run_program([2,4,4,5,99,0]) == [2,4,4,5,99,9801]
+    assert run_program([1,1,1,4,99,5,6,0,99]) == [30,1,1,4,2,5,6,0,99]
+
 if __name__ == '__main__':
+    # test()
     main()
