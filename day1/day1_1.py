@@ -11,5 +11,12 @@ def main():
             total_fuel += module_fuel(module_mass)
     print(total_fuel)
 
+def test():
+    assert module_fuel(12) == 2
+    assert module_fuel(14) == 2
+    assert module_fuel(1969) == 654
+    assert module_fuel(100756) == 33583
+
 if __name__ == '__main__':
+    # test()
     main()
