@@ -1,5 +1,6 @@
 import sys
 from io import StringIO
+from itertools import permutations
 
 ######################################
 ########## Helper Functions ##########
@@ -160,8 +161,18 @@ def main():
     with open('7.in') as f:
         program = list(map(int, f.readline().split(',')))
 
-    # run intcode program
-    run_program(program)
+    # generate all permutations of phase sequences
+    phase_sequences = permutations(range(5))
+    largest_output_signal = float('-inf')
+    # check the result of each phase sequence to determine which one produces
+    # the largest output signal
+    for phase_sequence in phase_sequences:
+        output_signal = run_amplifiers(program, phase_sequence)
+
+        if output_signal > largest_output_signal:
+            largest_output_signal = output_signal
+
+    print(largest_output_signal)
 
 def test():
     assert run_program([1,0,0,0,99]) == [2,0,0,0,99]
@@ -184,5 +195,5 @@ def test():
     assert run_amplifiers(program, phase_sequence) == 65210
 
 if __name__ == '__main__':
-    test()
-    # main()
+    # test()
+    main()
