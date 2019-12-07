@@ -16,8 +16,9 @@ def count_total_orbits(G, s):
             parent_orbits = orbits[node]
 
             for child in G[node]:
-                d.append(child)
-                orbits[child] = parent_orbits + 1 # indirect orbits + direct
+                if child not in visited:
+                    d.append(child)
+                    orbits[child] = parent_orbits + 1 # indirect orbits + direct
 
     return sum(orbits.values())
 
