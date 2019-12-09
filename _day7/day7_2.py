@@ -130,7 +130,7 @@ class IntCodeComputer():
 
 def run_amplifiers(program, phase_sequence):
     output_signal = None
-    for i, setting in enumerate(phase_sequence):
+    for setting in phase_sequence:
         if output_signal is None:
             # if this is the first amplifier, provide an initial input signal
             sys.stdin = StringIO(str(setting) + '\n0')
@@ -143,13 +143,11 @@ def run_amplifiers(program, phase_sequence):
         # Source for the following 6 lines: https://stackoverflow.com/q/5136611
         backup = sys.stdout                   # setup the environment
         sys.stdout = StringIO()               # capture output
-        run_program(program)                  # run program with appropriate settings
+        computer = IntCodeComputer(program)   # intialize new computer object
+        computer.run_program()                # run program with appropriate settings
         output_signal = sys.stdout.getvalue() # release output
         sys.stdout.close()                    # close the stream
         sys.stdout = backup                   # restore original stdout
-
-        if i == len(phase_sequence) - 1:
-            thruster_signal = output_signal
     return int(output_signal)
 
 def main():
@@ -185,8 +183,6 @@ def test():
 
     computer = IntCodeComputer([1002,4,3,4,33])
     assert computer.run_program() == [1002,4,3,4,99]
-
-    exit()
 
     # run example amplifier programs
     program = [3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0]
