@@ -1,10 +1,17 @@
+from collections import defaultdict
 import sys
 
 class IntcodeComputer():
     """An implementation of the Intcode Computer described in Advent of Code 2019."""
 
     def __init__(self, program):
-        self.program = program + [0] * 2000
+        # convert program (which is a list) to a dict, with list elements' indices as keys
+        program = {key:value for key, value in enumerate(program)}
+        # use a defaultdict so that memory beyond the initial program starts with the value 0
+        self.program = defaultdict(lambda:0, program)
+        # update the defaultdict with the dict created from the program
+        self.program.update(program)
+
         self.current_opcode = None
         self.pc = 0 # program counter
         self.jump_table = {1: self.op_1,
