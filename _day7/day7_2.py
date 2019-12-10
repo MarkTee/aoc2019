@@ -52,7 +52,7 @@ def run_amplifiers(program_filename, phase_sequence, feedback_loop=False):
 
 def main():
     # get input program
-    program_filename = 'programs/7.in'
+    program_filename = '../IntcodePrograms/7.in'
 
     # generate all permutations of phase sequences
     phase_sequences = permutations(range(5, 10))
@@ -88,24 +88,24 @@ def test():
     assert computer.run_program() == [1002,4,3,4,99]
 
     # amplifier tests
-    program_filename = 'programs/test1.in'
+    program_filename = '../IntcodePrograms/test1.in'
     phase_sequence = [4,3,2,1,0]
     assert run_amplifiers(program_filename, phase_sequence) == 43210
 
-    program_filename = 'programs/test2.in'
+    program_filename = '../IntcodePrograms/test2.in'
     phase_sequence = [0,1,2,3,4]
     assert run_amplifiers(program_filename, phase_sequence) == 54321
 
-    program_filename = 'programs/test3.in'
+    program_filename = '../IntcodePrograms/test3.in'
     phase_sequence = [1,0,4,3,2]
     assert run_amplifiers(program_filename, phase_sequence) == 65210
 
     # amplifier feedback loop tests
-    program_filename = 'programs/test4.in'
+    program_filename = '../IntcodePrograms/test4.in'
     phase_sequence = [9,8,7,6,5]
     assert run_amplifiers(program_filename, phase_sequence, feedback_loop=True) == 139629729
 
-    program_filename = 'programs/test5.in'
+    program_filename = '../IntcodePrograms/test5.in'
     phase_sequence = [9,7,8,5,6]
     assert run_amplifiers(program_filename, phase_sequence, feedback_loop=True) == 18216
 
