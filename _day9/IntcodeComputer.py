@@ -4,7 +4,7 @@ class IntcodeComputer():
     """An implementation of the Intcode Computer described in Advent of Code 2019."""
 
     def __init__(self, program):
-        self.program = program
+        self.program = program + [0] * 500
         self.current_opcode = None
         self.pc = 0 # program counter
         self.jump_table = {1: self.op_1,
@@ -14,7 +14,7 @@ class IntcodeComputer():
                            5: self.op_5,
                            6: self.op_6,
                            7: self.op_7,
-                           8: self.op_8
+                           8: self.op_8,
                            9: self.op_9}
         self.relative_base = 0
 
@@ -54,7 +54,8 @@ class IntcodeComputer():
 
             # position mode
             elif mode == '2':
-                pass
+                offset = self.program[self.pc + i]
+                parameter = self.program[self.relative_base + offset]
 
             parameters.append(parameter)
 
@@ -132,8 +133,10 @@ class IntcodeComputer():
 
     def op_9(self):
         """Adjust Relative Base Operation"""
-        new_relative_base = self.get_parameters(1)
+        new_relative_base = self.get_parameters(1)[0]
         self.relative_base += new_relative_base
+
+        self.pc += 2
 
 def main():
     """When called from the command line and provided with an intcode program,
