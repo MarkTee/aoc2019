@@ -1,11 +1,25 @@
 from subprocess import Popen, PIPE
 
 def send_signal(robot, signal):
+    """Sends a signal to the painting robot.
+    0: if the robot is over a black panel
+    1: if the robot is over a white panel
+    """
     signal = str(signal) + '\n'
     robot.stdin.write(signal.encode())
     robot.stdin.flush()
 
 def get_signal(robot):
+    """Receives a signal from the painting robot.
+    First, a value indicating the colour that the robot will paint the panel
+    that it's currently over.
+    0: black
+    1: white
+
+    Second, a value indicating the direction the robot will turn.
+    0: turn left 90 degrees
+    1: turn right 90 degrees
+    """
     to_paint_colour = robot.stdout.readline().decode().rstrip()
     turn_direction = robot.stdout.readline().decode().rstrip()
 
