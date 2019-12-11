@@ -1,7 +1,5 @@
 from IntcodeComputer import IntcodeComputer
 
-
-
 def main():
     """Identical to Day 9 - Part 1, except a different input is passed in."""
 
