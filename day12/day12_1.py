@@ -1,7 +1,7 @@
 def scan_moons(filename):
     """Parses an input file and extracts the coordinates of each moon.
     Returns two dicts, which map the i-th moon to its (x, y, z) coordinates,
-    and its initial velocity (which is always 0), respectively.
+    and its initial velocity (which is always 0 on all 3 axes), respectively.
     """
     moon_positions = dict()
     moon_velocities = dict()
@@ -16,8 +16,16 @@ def scan_moons(filename):
             z = int(moon[2][moon[2].index('=') + 1:-1])
 
             moon_positions[i] = (x, y, z)
-            moon_velocities[i] = 0
+            moon_velocities[i] = (0, 0, 0)
     return moon_positions, moon_velocities
+
+def apply_gravity(moon_positions, moon_velocities):
+    """Applies gravity (as described in the problem statement)."""
+    pass
+
+def apply_velocity(moon_positions, moon_velocities):
+    """Adds the velocity of each moon to its own position."""
+    pass
 
 def main():
     filename = '12.in'
