@@ -14,12 +14,12 @@ def print_decoded_image(image, col_length, row_length):
     # print the decoded image to the terminal
     for row in range(row_length):
         for col in range(col_length):
-            # print black pixel
-            if decoded_image[(row * col_length) + col] == '0':
-                print(u"\u2588", end='')
             # print white pixel
-            else:
+            if decoded_image[(row * col_length) + col] == '0':
                 print(u"\u2591", end='')
+            # print black pixel
+            else:
+                print(u"\u2588", end='')
         print()
 
 def main():
