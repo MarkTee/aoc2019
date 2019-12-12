@@ -69,16 +69,38 @@ def print_debug(moons, i):
                                                        moon[1][2]))
     print()
 
+def calculate_total_energy(moons):
+    """Calculates total energy in the system."""
+    total_system_energy = 0
+    # calculate each moon's total energy
+    for moon in moons.values():
+        # sum of the absolute values of the moon's (x, y, z) coordinates
+        potential_energy = sum(abs(n) for n in moon[0])
+        # sum of the absolute values of the moon's (x, y, z) velocities
+        kinetic_energy = sum(abs(n) for n in moon[1])
+
+        total_moon_energy = potential_energy * kinetic_energy
+        total_system_energy += total_moon_energy
+
+    return total_system_energy
+
 def main():
     filename = '12.in'
     moons = scan_moons(filename)
-    step(moons, 1000)
+    step(moons, 1000, debug=False)
+    print(calculate_total_energy(moons))
 
 def test():
     filename = 'test1.in'
     moons = scan_moons(filename)
-    step(moons, 10, debug=True)
+    step(moons, 10, debug=False)
+    assert calculate_total_energy(moons) == 179
+
+    filename = 'test2.in'
+    moons = scan_moons(filename)
+    step(moons, 100, debug=False)
+    assert calculate_total_energy(moons) == 1940
 
 if __name__ == '__main__':
-    test()
-    # main()
+    # test()
+    main()
