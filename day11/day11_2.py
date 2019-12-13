@@ -27,7 +27,7 @@ def get_signal(robot):
 
 def run_painting_robot(program_filename):
     """Run the painting robot, sending and receiving calls as necessary.
-    Through this process, collect data in order to laern more about the
+    Through this process, collect data in order to learn more about the
     dimensions of the hull, the starting position of the robot, and the final
     colours of the hull.
     """
