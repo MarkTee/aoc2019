@@ -21,7 +21,12 @@ def parse_input_file(filename):
     return reactions
 
 def get_fuel_cost(reactions):
-    """Calculate the number of ore needed to produce a single unit of fuel."""
+    """Calculate the number of ore needed to produce a single unit of fuel.
+
+    I used:
+    https://github.com/jeffjeffjeffrey/advent-of-code/blob/master/2019/day_14.ipynb
+    to help debug this function.
+    """
     ore_cost = 0
     have = defaultdict(int)       # leftover chemicals from other reactions
     needed = deque([['FUEL', 1]]) # a queue holding chemicals that need to be produced
