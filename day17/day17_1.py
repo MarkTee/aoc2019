@@ -24,6 +24,9 @@ def get_alignment_parameters_sum(program):
             scaffolding.add((row, col))
         elif char == '46':
             line.append('.')
+        else:
+            if char != '10':
+                line.append(chr(int(char)))
 
         col += 1
 
@@ -43,6 +46,10 @@ def get_alignment_parameters_sum(program):
         if (x+1, y) in scaffolding and (x-1, y) in scaffolding and \
            (x, y+1) in scaffolding and (x, y-1) in scaffolding:
            intersections.add(scaffold)
+    
+    # print grid
+    #for row in grid:
+    #    print(''.join(row))
 
     # sum the alignment parameter of each  intersection
     alignment_parameters_sum = 0
