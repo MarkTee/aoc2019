@@ -1,9 +1,8 @@
-def fft(input_signal, phase=1):
+def fft(signal, phase):
     """Execute Flawed Frequency Transmission algorithm, as described in the
     problem statement.
     """
-    signal_length = len(input_signal)
-    signal = input_signal
+    signal_length = len(signal)
     base_pattern = [0, 1, 0, -1]
 
     # execute the given number of phases of the algorithm
@@ -38,7 +37,7 @@ def main():
 
 def test():
     input_signal = '12345678'
-    assert fft(input_signal) == '48226158'
+    assert fft(input_signal, phase=1) == '48226158'
     assert fft(input_signal, phase=2) == '34040438'
     assert fft(input_signal, phase=3) == '03415518'
     assert fft(input_signal, phase=4) == '01029498'
@@ -48,5 +47,5 @@ def test():
     assert fft('69317163492948606335995924319873', phase=100)[:8] == '52432133'
 
 if __name__ == '__main__':
-    # test()
+    #test()
     main()
